@@ -4,6 +4,7 @@
 #include <limits.h>
 #include <libappindicator/app-indicator.h>
 #include "systray.h"
+#include <unistd.h>
 
 static AppIndicator *global_app_indicator;
 static GtkWidget *global_tray_menu = NULL;
@@ -28,6 +29,7 @@ typedef struct {
 
 void registerSystray(void) {
 	gtk_init(0, NULL);
+	usleep(100000);
 	global_app_indicator = app_indicator_new("systray", "", APP_INDICATOR_CATEGORY_APPLICATION_STATUS);
 	app_indicator_set_status(global_app_indicator, APP_INDICATOR_STATUS_ACTIVE);
 	global_tray_menu = gtk_menu_new();
